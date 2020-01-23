@@ -23,6 +23,12 @@ const resolvers : Resolvers = {
                         error : null,
                         token :"Coming Soon"
                     }
+                } else {
+                    return {
+                        ok : true,
+                        error : null,
+                        token :"Coming Soon"
+                    }
                 }
 
             } catch (error) {
