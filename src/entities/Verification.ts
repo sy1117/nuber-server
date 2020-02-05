@@ -15,11 +15,12 @@ class Verification extends BaseEntity {
     payload : string;
     @Column({ type: "text" })
     key : string;
-    @Column({type :"boolean", default : false})
-    used : boolean;
 
-    @ManyToOne(type=>User, user=>user.verifications)
+    @ManyToOne(type=>User, user=>user.verifications, {nullable:true})
     user : User;
+
+    @Column({type:"boolean", default: false})
+    verified: boolean;
 
     @CreateDateColumn ({type: "text"})
     createdAt : string;
