@@ -1,5 +1,5 @@
 import { Resolvers } from "../../../types/resolvers";
-import { CompletePhoneVerificationResponse, CompletePhoneVerificationResponseMutationArgs } from "../../../types/graph";
+import { CompletePhoneVerificationResponse, CompletePhoneVerificationMutationArgs } from "../../../types/graph";
 import Verification from "../../../entities/Verification";
 import User from "../../../entities/User";
 import createJWT from "../../../utils/createJWT";
@@ -8,12 +8,12 @@ export const resolvers : Resolvers = {
     Mutation:{
         CompletePhoneVerification: async(
             _, 
-            args:CompletePhoneVerificationResponseMutationArgs
+            args:CompletePhoneVerificationMutationArgs
         ):Promise<CompletePhoneVerificationResponse>=>{
             const { phoneNumber, key} = args;
 
             try {
-                const verification = Verification.findOne({
+                const verification= await Verification.findOne({
                     payload: phoneNumber,
                     key
                 })
@@ -22,6 +22,14 @@ export const resolvers : Resolvers = {
                         ok: false,
                         error : "Verification key not valid",
                         token: null
+                    }
+                }else{
+                    verification.verified = true;
+                    verification.save();
+                    return {
+                        ok: true,
+                        error: null,
+                        token:null
                     }
                 }
             } catch (error) {
@@ -34,9 +42,9 @@ export const resolvers : Resolvers = {
             }
 
             try {
-                const user = await User.findOne({
+                const user:any = await User.findOne({
                     phoneNumber
-                })
+                });
                 if(user){
                     user.verifiedPhoneNumber = true;
                     user.save();

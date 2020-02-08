@@ -18,10 +18,10 @@ type User {
     lastOrientation : Float
     createdAt : String!
     updatedAt : String
-    verifications: [Verification]
     fbId : String,
     ridesAsPassenger:[Ride],
-    ridesAsDriver:[Ride]
+    ridesAsDriver:[Ride],
+    places:[Place]
 }
 
 type Query {

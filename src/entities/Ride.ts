@@ -5,15 +5,19 @@ import User from "./User";
 class Ride extends BaseEntity{
     @PrimaryGeneratedColumn() id:number;
 
-    @Column({type:"text", enum:["ACCEPTED", "FINISHIED", "CANCELED", "REQUESTING", "ONROUTE" ]})
+    @Column({
+        type:"text", 
+        enum:["ACCEPTED", "FINISHIED", "CANCELED", "REQUESTING", "ONROUTE" ],
+        default : "ACCEPTED",
+    })
     status:string;
 
     @Column({type:"text"})
     pickUpAddress:string;
     @Column({type:"double precision"})
-    pickUpLat:string;
+    pickUpLat:number;
     @Column({type:"double precision"})
-    pickUpLng:string;
+    pickUpLng:number;
 
     @Column({type:"text"})
     dropOffAddress:string;
@@ -35,7 +39,7 @@ class Ride extends BaseEntity{
     @ManyToOne(type => User, user=>user.ridesAsPassenger)
     passenger : User;
 
-    @ManyToOne(type => User, user=>user.ridesAsDriver)
+    @ManyToOne(type => User, user=>user.ridesAsDriver, {nullable:true})
     driver : User;
 }
 

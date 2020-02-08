@@ -27,8 +27,6 @@ export const resolvers : Resolvers = {
                     error:null
                 }
 
-
-
             } catch (error) {
                 return {
                     ok:false,

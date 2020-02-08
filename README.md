@@ -22,6 +22,7 @@
 
 - [ ] Add Place
 - [ ] Edit Place
+- [ ] Get My Places
 - [ ] Delete Place
 
 #### Passenger Mode 

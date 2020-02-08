@@ -1,6 +1,7 @@
-import { BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column } from "typeorm";
+import { BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToOne, Entity } from "typeorm";
+import User from "./User";
 
-
+@Entity()
 class Place extends BaseEntity{
     @PrimaryGeneratedColumn() id:number;
 
@@ -14,6 +15,12 @@ class Place extends BaseEntity{
     address : string;
     @Column({type:"boolean", default : false})
     isFav : boolean;
+
+    @Column({nullable: true})
+    userId : number;
+
+    @ManyToOne(type=>User, user=>user.places)
+    user: User;
 
     @CreateDateColumn() createdAt : string;
     @UpdateDateColumn() updatedAt : string;
