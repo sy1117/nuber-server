@@ -9,7 +9,10 @@ class Message extends BaseEntity{
     @Column({type:"text"})
     text : string 
 
-    @ManyToOne(type=>Chat, chat=>chat.messages)
+    @Column({nullable:true})
+    chatId: number;
+
+    @ManyToOne(type=>Chat, chat=>chat.messages, {nullable:true})
     chat : Chat;
 
     @ManyToOne(type=>User, user=>user.messages)

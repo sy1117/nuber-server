@@ -21,6 +21,8 @@ type User {
     fbId : String,
     ridesAsPassenger:[Ride],
     ridesAsDriver:[Ride],
+    chatsAsPassenger :[Chat],
+    chatsAsDriver:[Chat],
     places:[Place]
 }
 

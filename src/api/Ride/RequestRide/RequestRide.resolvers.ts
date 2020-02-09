@@ -9,7 +9,7 @@ export const resolvers : Resolvers = {
         RequestRide : privateResolver(
             async(_, args, { req, pubSub }):Promise<RequestRideResponse>=>{
                 const user : User = req.user;
-                if(!user.isDriving){
+                if(!user.isDriving && !user.isRiding){
                     try {
                         const ride = await Ride.create({...args, passenger:user}).save();
                         pubSub.publish("rideRequest", { NearByRideSubscription : ride })
@@ -30,7 +30,7 @@ export const resolvers : Resolvers = {
                 }else{
                     return {
                         ok:false,
-                        error: "You can't request two rides",
+                        error: "You can't request two rides or drive and request",
                         ride: null
                     }
                 }

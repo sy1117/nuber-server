@@ -8,7 +8,7 @@ import { NextFunction, Response } from 'express';
 
 class App {
     public app: GraphQLServer;
-    public pubSub:any;
+    public pubSub;
     constructor(){
         this.pubSub = new PubSub();
         this.pubSub.ee.setMaxListeners(99);

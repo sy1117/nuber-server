@@ -1,5 +1,6 @@
-import { BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToOne, Entity } from "typeorm";
+import { BaseEntity, PrimaryGeneratedColumn, CreateDateColumn, UpdateDateColumn, Column, ManyToOne, Entity, OneToOne, JoinColumn } from "typeorm";
 import User from "./User";
+import Chat from "./Chat";
 
 @Entity()
 class Ride extends BaseEntity{
@@ -8,7 +9,7 @@ class Ride extends BaseEntity{
     @Column({
         type:"text", 
         enum:["ACCEPTED", "FINISHIED", "CANCELED", "REQUESTING", "ONROUTE" ],
-        default : "ACCEPTED",
+        default : "REQUESTING",
     })
     status:string;
 
@@ -44,6 +45,13 @@ class Ride extends BaseEntity{
 
     @Column({nullable: true})
     driverId: number; 
+
+    @Column({nullable: true})
+    chatId : number
+
+    @OneToOne(type=>Chat, chat=>chat.ride, {nullable : true})
+    @JoinColumn()
+    chat : Chat;
 
     @ManyToOne(type => User, user=>user.ridesAsDriver, {nullable:true})
     driver : User;

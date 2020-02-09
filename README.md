@@ -3,38 +3,38 @@
 ## Resolvers 
 
 ### Public Resolvers
-- [ ] Sign Up / Sign In with Facebook
-- [ ] Sign In with Email
-- [ ] Start Phone Number Verification
-- [ ] Complete Phone Number Verification
-- [ ] Sign Up With Email
+- [x] Sign Up / Sign In with Facebook
+- [x] Sign In with Email
+- [x] Start Phone Number Verification
+- [x] Complete Phone Number Verification
+- [x] Sign Up With Email
 
 
 ### Private Resolvers
 
-- [ ] Generate JWT
-- [ ] Verify JWT
-- [ ] Verify Email
-- [ ] Get My Profile 
-- [ ] Update My Profile
-- [ ] Report Location & Orientation
-- [ ] Toggle Driving Mode
+- [x] Generate JWT
+- [x] Verify JWT
+- [x] Verify Email
+- [x] Get My Profile 
+- [x] Update My Profile
+- [x] Report Location & Orientation
+- [x] Toggle Driving Mode
 
-- [ ] Add Place
-- [ ] Edit Place
-- [ ] Get My Places
-- [ ] Delete Place
+- [x] Add Place
+- [x] Edit Place
+- [x] Get My Places
+- [x] Delete Place
 
 #### Passenger Mode 
-- [ ] See Nearby Drivers
-- [ ] Subscribe to Nearby Drivers
+- [x] See Nearby Drivers
+- [x] Subscribe to Nearby Drivers
 
 #### Driver Mode 
-- [ ] Request a Ride
-- [ ] Get Nearby Rides
-- [ ] Subscribe to Nearby Ride Request
-- [ ] Subscribe to Ride Status
-
+- [x] Request a Ride
+- [x] Get Nearby Rides
+- [x] Subscribe to Nearby Ride Request
+- [x] Subscribe to Ride Status
+- [ ] Create Chat Room
 - [ ] Get Chat Room Messages
 - [ ] Subscribe to Chat Room Messages
 - [ ] Send a Chat Message
