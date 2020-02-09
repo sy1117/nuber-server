@@ -1,40 +1,49 @@
 import { Resolvers } from "../../../types/resolvers";
 import { privateResolver } from "../../../utils/resolverMiddleware";
 import User from "../../../entities/User";
-import { GetNearByRidesResponse } from "../../../types/graph";
+import { GetNearByRideResponse } from "../../../types/graph";
 import { getRepository, Between } from "typeorm";
 import Ride from "../../../entities/Ride";
 
 export const resolvers :Resolvers = {
     Query :{
-        GetNearByRides : privateResolver(
-            async(_, __, {req}) : Promise<GetNearByRidesResponse> =>{
+        GetNearByRide : privateResolver(
+            async(_, __, {req}) : Promise<GetNearByRideResponse> =>{
                 const user : User = req.user;
                 if(user.isDriving){
                     try {
                         const { lastLat, lastLng } = user;
-                        const rides =await getRepository(Ride).find({
+                        const ride =await getRepository(Ride).findOne({
                             status: "REQUESTING",
                             pickUpLat : Between(lastLat - 0.05,lastLat+0.05),
                             pickUpLng : Between(lastLng - 0.05,lastLng+0.05),
                         })
-                        return {
-                            ok: true,
-                            error:null,
-                            rides
+                        if(ride){
+                            return {
+                                ok: true,
+                                error:null,
+                                ride
+                            }
+                        }else{
+                            return {
+                                ok: false,
+                                error:"there is no ride",
+                                ride :null
+                            }
                         }
+
                     } catch (error) {
                         return {
                             ok: false,
                             error: error.message,
-                            rides: null
+                            ride: null
                         }
                     }
                 }else{
                     return {
                         ok: false,
                         error: "You are not a driver",
-                        rides: null
+                        ride: null
                     }
                 }
             }
